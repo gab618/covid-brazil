@@ -1,11 +1,14 @@
 <header class="header">
   <h1 class="header__title">{{ title }}</h1>
-  <!-- <ul class="nav-bar-list">
+  <ul class="nav-bar-list">
     <li>
-      <a routerLink="home" routerLinkActive="ativado">Home</a>
-      <a routerLink="extrato" routerLinkActive="ativado">Extrato</a>
-      <a routerLink="login" routerLinkActive="ativado">Login</a>
-      <a routerLink="contatos" routerLinkActive="ativado">Contatos</a>
+      <a
+        routerLink=""
+        routerLinkActive="ativado"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Casos</a
+      >
+      <a routerLink="history" routerLinkActive="ativado">Histórico</a>
     </li>
-  </ul> -->
+  </ul>
 </header>

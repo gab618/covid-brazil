@@ -1,4 +1,4 @@
-<div *ngIf="pieChartData">
+<div *ngIf="pieChartData" class="covid">
   <div>
     <div class="chart">
       <canvas
@@ -13,5 +13,13 @@
       >
       </canvas>
     </div>
+  </div>
+  <div class="container text-center buttons">
+    <button class="btn btn-primary" (click)="setChartToInfected()">
+      Infectados
+    </button>
+    <button class="btn btn-primary" (click)="setChartToDeceased()">
+      Mortos
+    </button>
   </div>
 </div>

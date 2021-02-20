@@ -13,13 +13,15 @@ import { CovidService } from './covid.service';
 })
 export class CovidComponent implements OnInit {
   covidData: Covid;
-  covidLabels;
-  covidInfecteds;
+  infectedLabels;
+  infectedData;
+  deceasedLabels;
+  deceasedData;
 
   pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: 'top',
+      position: 'bottom',
     },
     plugins: {
       datalabels: {
@@ -41,6 +43,21 @@ export class CovidComponent implements OnInit {
         'rgba(255,0,0,0.3)',
         'rgba(0,255,0,0.3)',
         'rgba(0,0,255,0.3)',
+        'rgba(230, 194, 41,0.3)',
+        'rgba(241, 113, 5,0.3)',
+        'rgba(209, 17, 73,0.3)',
+        'rgba(102, 16, 242,0.3)',
+        'rgba(26, 143, 2270.3)',
+        'rgba(252, 221, 242,0.3)',
+        'rgba(56, 77, 72,0.3)',
+        'rgba(110, 114, 113,0.3)',
+        'rgba(119, 118, 188,0.3)',
+        'rgba(110, 13, 37,0.3)',
+        'rgba(255, 255, 179,0.3)',
+        'rgba(69, 123, 157,0.3)',
+        'rgba(32, 138, 174,0.3)',
+        'rgba(241, 81, 86,0.3)',
+        'rgba(233, 255, 249,0.3)',
       ],
     },
   ];
@@ -54,16 +71,29 @@ export class CovidComponent implements OnInit {
   getCovidData() {
     this.covidService.getCovidData().subscribe((response) => {
       this.covidData = response;
-      console.log(this.covidData);
-      this.pieChartLabels = this.covidData.infectedByRegion.map(
+      this.infectedLabels = this.covidData.infectedByRegion.map(
         (item) => item.state
       );
-      this.pieChartData = this.covidData.infectedByRegion.map(
+      this.infectedData = this.covidData.infectedByRegion.map(
         (item) => item.count
       );
-      console.log(this.pieChartLabels);
-      console.log(this.pieChartData);
-      // this.pieChartLabels =
+      this.deceasedLabels = this.covidData.deceasedByRegion.map(
+        (item) => item.state
+      );
+      this.deceasedData = this.covidData.deceasedByRegion.map(
+        (item) => item.count
+      );
+      this.setChartToInfected();
     });
+  }
+
+  setChartToInfected() {
+    this.pieChartLabels = this.infectedLabels;
+    this.pieChartData = this.infectedData;
+  }
+
+  setChartToDeceased() {
+    this.pieChartLabels = this.deceasedLabels;
+    this.pieChartData = this.deceasedData;
   }
 }
